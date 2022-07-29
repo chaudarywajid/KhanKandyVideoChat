@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SHaHeeR-CHaT Video</title>
+        <!-- Use Bootstrap styling. But add an extra style for our video containers. -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <style>
+            .video-container {
+                position: relative;
+                width: 640px;
+                height: 480px;
+                background-color: #000000;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="text-center">
+                <h2>SHaHeeR-CHaT Video</h2>
+            </div>
+
+            <!-- Left column: User authentication. -->
+            <div class="col-md-3">
+                <fieldset>
+                    <legend>Credentials</legend>
+
+                    <label>Domain Access Token</label>
+                    <input id="token" type="text" class="form-control" value="DAKba0293a00d5746348599e328bcab65dd">
+
+                    <label>Username</label>
+                    <input id="username" type="text" class="form-control" value="test4@chaudarywajid.hotmail.com">
+
+                    <label>Password</label>
+                    <input id="password" type="password" class="form-control" value="Tridant@123">
+
+                    <button id="btnLogin" class="btn btn-success" onclick="login();">Log In</button>
+                    <button id="btnLogout" class="btn btn-danger" onclick="logout();">Log out</button>
+                </fieldset>
+            </div>
+
+            <!-- Center column: Call Management. -->
+            <div class="col-md-6">
+
+                <h3>Make a new call</h3>
+                <p>Please enter the callee's username in user@domain format.</p>
+                <fieldset>
+                    <label>Destination</label>
+                    <input type="text" id="callee" placeholder="user1@chaudarywajid.hotmail.com" />
+                    <button id="btnMakeCall" class="btn btn-success" onclick="startCall();">Call</button>
+
+                    <input id="callVideo" type="checkbox">  Send Video on Start</input>
+                </fieldset>
+
+                <h3>Respond to an incoming call</h3>
+                <fieldset>
+                    <button id="btnAcceptCall" class="btn btn-success" onclick="acceptCall();" disabled>Accept Call</button>
+                    <button id="btnDeclineCall" class="btn btn-danger" onclick="declineCall();" disabled>Decline Call</button>
+
+                    <input id="acceptVideo" type="checkbox">  Answer with Video</input>
+                </fieldset>
+
+                <h3>Call Controls</h3>
+                <div class="btn-group">
+                    <button id="btnEndCall" class="btn btn-danger" onclick="endCall();">End Call</button>
+                    <button id="btnStartVideo" class="btn btn-primary" onclick="startVideo();" disabled>Start Video</button>
+                    <button id="btnStopVideo" class="btn btn-primary" onclick="stopVideo();" disabled>Stop Video</button>
+                    <button id="btnMuteCall" class="btn btn-primary" onclick="muteCall();" disabled>Mute Call</button>
+                    <button id="btnUnMuteCall" class="btn btn-primary" onclick="unMuteCall();" disabled>Unmute Call</button>
+                    <button id="btnHoldCall" class="btn btn-primary" onclick="holdCall();" disabled>Hold Call</button>
+                    <button id="btnUnHoldCall" class="btn btn-primary" onclick="unholdCall();" disabled>Unhold Call</button>
+                </div>
+
+                <div>
+                    Remote Video:
+                    <div id="remoteVideoContainer" class="video-container"></div>
+                </div>
+                <div>
+                    Local Video:
+                    <div id="localVideoContainer" class="video-container"></div>
+                </div>
+
+            </div>
+
+            <!-- Right column: Logged messages. -->
+            <div class="col-md-3">
+                <fieldset>
+                    <legend>Log Messages</legend>
+                    <div id="messages"></div>
+                </fieldset>
+            </div>
+
+        </div>
+
+        <!-- Include Kandy in our application. -->
+        <script src="https://kandy-portal.s3.amazonaws.com/public/javascript/kandy/2.11.2/kandy.js"></script>
+        <!-- Include the call management logic. -->
+        <script src="./calls.js"></script>
+        <!-- Include a custom utility for convenience. -->
+        <script src="./autoFill.js"></script>
+        <script type="text/javascript">
+            // Setup on page load, so that Kandy is ready for use.
+            setup();
+        </script>
+
+    </body>
+</html>
